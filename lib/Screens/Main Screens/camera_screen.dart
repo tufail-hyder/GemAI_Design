@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/services.dart';
 
 class CameraScreen extends StatefulWidget {
   const CameraScreen({super.key});
@@ -17,11 +18,14 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void initState() {
     super.initState();
+
+    // Hide status bar and navigation bar
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     initializeCamera();
   }
 
-  Future<void> initializeCamera() async 
-  {
+  Future<void> initializeCamera() async {
     cameras = await availableCameras();
     if (cameras!.isNotEmpty) {
       controller = CameraController(cameras![0], ResolutionPreset.high);
@@ -34,6 +38,8 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   void dispose() {
     controller?.dispose();
+    // Restore status/navigation bars when leaving screen
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.dispose();
   }
 
@@ -54,32 +60,63 @@ class _CameraScreenState extends State<CameraScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
-          CameraPreview(controller!),
-          Positioned(
-            bottom: 30,
-            left: 40,
-            child: FloatingActionButton(
-              heroTag: 'gallery',
-              backgroundColor: Colors.white70,
-              onPressed: pickFromGallery,
-              child: const Icon(Icons.photo, color: Colors.black),
-            ),
+          // Full screen camera preview
+          SizedBox.expand(
+            child: CameraPreview(controller!),
           ),
+
+          // Bottom controls
           Positioned(
-            bottom: 30,
-            right: 40,
-            child: FloatingActionButton(
-              heroTag: 'camera',
-              backgroundColor: const Color(0xFF86520D),
-              onPressed: () async {
-                final XFile image = await controller!.takePicture();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Photo saved at ${image.path}')),
-                );
-              },
-              child: const Icon(Icons.camera_alt, color: Colors.white),
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: Colors.black.withOpacity(0.5), // semi-transparent black
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Gallery button
+                  GestureDetector(
+                    onTap: pickFromGallery,
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: const Icon(Icons.photo, color: Colors.white, size: 30),
+                    ),
+                  ),
+
+                  // Capture button (center)
+                  GestureDetector(
+                    onTap: () async {
+                      final XFile image = await controller!.takePicture();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Photo saved at ${image.path}')),
+                      );
+                    },
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 4),
+                      ),
+                    ),
+                  ),
+
+                  // Placeholder for symmetry
+                  SizedBox(width: 60),
+                ],
+              ),
             ),
           ),
         ],
