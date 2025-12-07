@@ -174,8 +174,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // -------------------- BOTTOM NAV BAR --------------------
   Widget bottomNavBar() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16, top: 10, left: 10, right: 10),
-      height: 55,
+      margin: const EdgeInsets.only(bottom: 26, top: 10, left: 12, right: 12),
+      height: 65,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -194,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Navigator.push(
                 context, MaterialPageRoute(builder: (_) => const HomeScreen()));
           }),
-          navItem(Icons.list, "MarketPlace", 1, () {
+          navItem(Icons.store, "MarketPlace", 1, () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const MarketplaceScreen()));
           }),
@@ -221,12 +221,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon,
-              size: 22,
+              size: 26,
               color: selected ? const Color(0xFF86520D) : Colors.grey.shade600),
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "TimesRomanFont",
               fontWeight: FontWeight.w600,
               color: selected ? const Color(0xFF86520D) : Colors.grey.shade600,

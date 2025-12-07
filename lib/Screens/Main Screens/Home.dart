@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             height: 90,
             color: const Color.fromARGB(255, 245, 236, 227),
-            padding: const EdgeInsets.only(left: 12,right: 12,top: 20),
+            padding: const EdgeInsets.only(left: 12,right: 12,top: 40),
             child: Row(
               children: [
                 Expanded(
@@ -215,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
       // ---------------- BOTTOM NAVIGATION BAR ----------------
       bottomNavigationBar: Container(
-        margin: EdgeInsets.only(bottom: 16,top: 10,left: 10,right: 10),
-        height: 55,
+        margin: EdgeInsets.only(bottom: 26,top: 10,left: 12,right: 12),
+        height: 65,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius:  BorderRadius.circular(30),
@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
             navItem(Icons.home, "Home", 0, () {
               setState(() => selectedIndex = 0);
             }),
-            navItem(Icons.list, "MarketPlace", 1, () {
+            navItem(Icons.store, "MarketPlace", 1, () {
               Navigator.push(context, MaterialPageRoute(builder: (_) => const MarketplaceScreen()));
             }),
             navItem(Icons.camera_alt, "Capture", 2, () {
@@ -263,13 +263,13 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Icon(
             icon,
-            size: 22,
+            size: 26,
             color: selected ?  const Color(0xFF86520D) : Colors.grey.shade600,
           ),
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
               fontFamily: 'TimesRomanFont',
               color: selected ?  const Color(0xFF86520D) : Colors.grey.shade600,
@@ -371,7 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
           double spacing = screenWidth * 0.03; 
 
           return SizedBox(
-            height: 100,
+            height: 110,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: gems.length,
@@ -384,12 +384,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(builder: (_) => gem.detailScreen),
                   ),
                   child: Container(
-                    width: 75,
+                    width: 80,
                     margin: EdgeInsets.only(right: spacing),
                     child: Column(
                       children: [
                         Container(
-                          height: 65,
+                          height: 75,
                           width:60,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -404,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           gem.name,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 15,
                             fontFamily: 'TimesRomanFont',
                             fontWeight: FontWeight.w700,
                           ),
@@ -427,7 +427,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget realFakeGemsSection(BuildContext context) {
     return SizedBox(
-      height: 120,
+      height: 130,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: realFakeGems.length > 5 ? 6 : realFakeGems.length,
@@ -461,7 +461,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: 75,
+              height: 85,
               width: 90,
               child: Image.asset(gem.imagePath, fit: BoxFit.cover),
             ),
@@ -520,7 +520,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     return SizedBox(
-      height: 145,
+      height: 175,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: bookImages.map((image) => bookCard(context, image)).toList(),
@@ -532,14 +532,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return InkWell(
       onTap: () {},
       child: Container(
-        width: 105,
+        width: 115,
         margin: const EdgeInsets.only(right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 135,
-              width: 105,
+              height: 165,
+              width: 115,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
                 image: DecorationImage(
@@ -564,7 +564,7 @@ class _HomeScreenState extends State<HomeScreen> {
         sectionTitle("Articles"),
         const SizedBox(height: 12),
         SizedBox(
-          height: 150,
+          height: 190,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: articles.length,
@@ -590,7 +590,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       },
       child: Container(
-        width: 125,
+        width: 130,
         margin: const EdgeInsets.only(right: 10),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -606,7 +606,7 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
               child: Image.asset(
                 article.imagePath,
-                height: 100,
+                height: 140,
                 width: double.infinity,
                 fit: BoxFit.fill,
               ),

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'Screens/Main Screens/Splash.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock orientation to portrait only
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown, 
+  ]);
+
   runApp(const GemAI());
 }
 
@@ -13,7 +22,7 @@ class GemAI extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'GemAI',
-      home: const SplashScreen(),  
+      home: const SplashScreen(),
     );
   }
 }

@@ -277,8 +277,9 @@ class TermsOfUseScreen extends StatelessWidget {
               SizedBox(height: 8),
               Text(
                 "If you notice any abusive behavior, fraud, illegal items, or suspicious activity, "
-                "you must report it immediately using the in-app reporting tools or by contacting support. "
-                "Failing to report known violations may result in limited account privileges.",
+                "you must provide feedback immediately using the in-app feedback tools or by contacting support. "
+                "Failing to give feedback on known violations may result in limited account privileges."
+,
                 style: TextStyle(
                   fontFamily: 'TimesRomanFont',
                   fontSize: 15,
@@ -311,74 +312,6 @@ class TermsOfUseScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 20),
-
-              Text(
-                "12. License to Use the App",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "By using this app, you receive a limited, personal, non-transferable license "
-                "to access our services. You may not copy, modify, distribute, or reverse-engineer "
-                "any part of the application. Any attempt to bypass security, manipulate data, "
-                "or exploit system vulnerabilities may result in legal action.",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 15,
-                  height: 1.5,
-                ),
-              ),
-
-              SizedBox(height: 20),
-
-              Text(
-                "13. Termination of Service",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "We may suspend or terminate your account without prior notice if you violate "
-                "any terms listed here. This includes fraudulent activity, repeated complaints "
-                "from users, harassment, or misuse of our platform. Upon termination, you will "
-                "lose access to all app features and stored data.",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 15,
-                  height: 1.5,
-                ),
-              ),
-
-              SizedBox(height: 20),
-
-              Text(
-                "14. Limitation of Liability",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "Rock Identifier is provided \"as is\" without warranties of any kind. "
-                "We are not responsible for losses, disputes, inaccurate item descriptions, "
-                "or damages resulting from user interaction. Users are fully responsible for "
-                "their decisions while using the marketplace.",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 15,
-                  height: 1.5,
-                ),
-              ),
               SizedBox(height: 20),
 
               Center(

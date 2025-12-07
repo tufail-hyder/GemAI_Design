@@ -36,8 +36,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
 
   // CLARITIES
   final List<String> clarities = [
-    "FL (Flawless)", "IF (Internally Flawless)", "VVS1", "VVS2",
-    "VS1", "VS2", "SI1", "SI2", "I1", "I2", "I3",
+    "FL (Flawless)", "IF (Internally Flawless)", "VVS1(Very Very Slightly Included 1)", "VVS2(Very Very Slightly      Included2)","VS1(Very Slightly Included 1)", "VS2(Very Slightly Included 2)", "SI1(Slightly Included 1)", "SI2(Slightly Included 2)", "I1(Included 1)", "I2(Included 2)", "I3(Included 3)",
   ];
 
   String? selectedGem;
@@ -95,7 +94,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
         weight;
 
     setState(() {
-      calculatedPriceUSD = pricePKR / 350; 
+      calculatedPriceUSD = pricePKR / 290; 
     });
   }
 
@@ -256,8 +255,8 @@ class _ValuationScreenState extends State<ValuationScreen> {
 
   Widget bottomNavBar() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16, top: 10, left: 10, right: 10),
-      height: 55,
+      margin: const EdgeInsets.only(bottom: 26, top: 10, left: 12, right: 12),
+      height: 65,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -269,7 +268,7 @@ class _ValuationScreenState extends State<ValuationScreen> {
           navItem(Icons.home, "Home", 0, () {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const HomeScreen()));
           }),
-          navItem(Icons.list, "MarketPlace", 1, () {
+          navItem(Icons.store, "MarketPlace", 1, () {
             Navigator.push(context, MaterialPageRoute(builder: (_) => const MarketplaceScreen()));
           }),
           navItem(Icons.camera_alt, "Capture", 2, () {
@@ -291,11 +290,11 @@ class _ValuationScreenState extends State<ValuationScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 22, color: selected ? const Color(0xFF86520D) : Colors.grey.shade600),
+          Icon(icon, size: 26, color: selected ? const Color(0xFF86520D) : Colors.grey.shade600),
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "TimesRomanFont",
               fontWeight: FontWeight.w600,
               color: selected ? const Color(0xFF86520D) : Colors.grey.shade600,

@@ -6,7 +6,8 @@ import 'package:project/Screens/Main Screens/camera_screen.dart';
 import 'package:project/Screens/Main Screens/valuation_screen.dart';
 import 'package:project/Screens/Main Screens/profile_screen.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:carousel_slider/carousel_slider.dart'; 
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project/Screens/flutter_auth/Login.dart';
 
 class MarketplaceScreen extends StatefulWidget {
   const MarketplaceScreen({super.key});
@@ -21,9 +22,25 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   List<Map<String, dynamic>> items = [
     {
       "name": "Spinel",
-      "price": 10000.0,
+      "price": 100.0,
       "image": "assets/images/MarketPlace/spinel.jpg",
       "seller": "Tufail",
+      "isFavorite": false,
+      "inCart": false,
+    },
+    {
+      "name": "Peridot Quartz",
+      "price": 500.0,
+      "image": "assets/images/MarketPlace/peridot_quartz.jpg",
+      "seller": "Tufail",
+      "isFavorite": false,
+      "inCart": false,
+    },
+     {
+      "name": "Pink Topaz",
+      "price": 400.0,
+      "image": "assets/images/MarketPlace/pink_topaz.jpg",
+      "seller": "Ali",
       "isFavorite": false,
       "inCart": false,
     },
@@ -31,22 +48,6 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
       "name": "Diamond Ring",
       "price": 5000.0,
       "image": "assets/images/MarketPlace/diamond_ring.jpg",
-      "seller": "Tufail",
-      "isFavorite": false,
-      "inCart": false,
-    },
-     {
-      "name": "Pink Topaz",
-      "price": 4000.0,
-      "image": "assets/images/MarketPlace/pink_topaz.jpg",
-      "seller": "Ali",
-      "isFavorite": false,
-      "inCart": false,
-    },
-    {
-      "name": "Peridot Quartz",
-      "price": 5000.0,
-      "image": "assets/images/MarketPlace/peridot_quartz.jpg",
       "seller": "Tufail",
       "isFavorite": false,
       "inCart": false,
@@ -61,7 +62,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
     },
     {
       "name": "Amethyst Ring",
-      "price": 9000.0,
+      "price": 900.0,
       "image": "assets/images/MarketPlace/amethyst_ring.jpg",
       "seller": "Ali",
       "isFavorite": false,
@@ -75,7 +76,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
       "isFavorite": false,
       "inCart": false,
     },
-    
+
     {
       "name": "Ruby Bracelet",
       "price": 4000.0,
@@ -103,10 +104,12 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
         .toList();
 
     // Get favorite and cart items
-    List<Map<String, dynamic>> favoriteItems =
-        items.where((item) => item["isFavorite"] == true).toList();
-    List<Map<String, dynamic>> cartItems =
-        items.where((item) => item["inCart"] == true).toList();
+    List<Map<String, dynamic>> favoriteItems = items
+        .where((item) => item["isFavorite"] == true)
+        .toList();
+    List<Map<String, dynamic>> cartItems = items
+        .where((item) => item["inCart"] == true)
+        .toList();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF7ECE1),
@@ -133,7 +136,10 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
             Stack(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.shopping_cart, color: Color(0xFF86520D)),
+                  icon: const Icon(
+                    Icons.shopping_cart,
+                    color: Color(0xFF86520D),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -153,9 +159,10 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       child: Text(
                         cartItems.length.toString(),
                         style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -171,7 +178,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => FavoritesScreen(favoriteItems: favoriteItems),
+                        builder: (_) =>
+                            FavoritesScreen(favoriteItems: favoriteItems),
                       ),
                     );
                   },
@@ -186,9 +194,10 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                       child: Text(
                         favoriteItems.length.toString(),
                         style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -241,7 +250,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                   crossAxisCount: 2,
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.63,
                 ),
                 itemBuilder: (_, index) {
                   var item = filteredItems[index];
@@ -284,12 +293,17 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
 
                             // ------------------- DETAILS -------------------
                             Padding(
-                              padding: const EdgeInsets.only(left: 8,right: 8,top: 2),
+                              padding: const EdgeInsets.only(
+                                left: 8,
+                                right: 8,
+                                top: 2,
+                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
                                         child: Text(
@@ -309,8 +323,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                           });
                                         },
                                         icon: Icon(
-                                          item["inCart"] 
-                                              ? Icons.shopping_cart 
+                                          item["inCart"]
+                                              ? Icons.shopping_cart
                                               : Icons.add_shopping_cart,
                                           size: 18,
                                           color: Colors.brown,
@@ -321,14 +335,20 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
 
                                   Row(
                                     children: [
-                                      const Icon(Icons.person,
-                                          size: 12, color: Colors.grey),
+                                      const Icon(
+                                        Icons.person,
+                                        size: 12,
+                                        color: Colors.grey,
+                                      ),
                                       const SizedBox(width: 4),
                                       Text(
                                         item["seller"],
                                         style: const TextStyle(
-                                            fontSize: 12, color: Colors.grey,fontFamily: "TimesRomanFont",),
-                                      )
+                                          fontSize: 12,
+                                          color: Colors.grey,
+                                          fontFamily: "TimesRomanFont",
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   const SizedBox(height: 2),
@@ -348,44 +368,66 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                                     width: double.infinity,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) => AlertDialog(
-                                            title: const Text("Contact Seller"),
-                                            content: Text(
-                                                "Contact ${item["seller"]} to buy ${item["name"]}?"),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(context),
-                                                  child: const Text("Cancel")),
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    const SnackBar(
-                                                      content: Text(
-                                                          "Seller contacted!"),
-                                                    ),
-                                                  );
-                                                },
-                                                child: const Text("Contact"),
-                                              )
-                                            ],
-                                          ),
-                                        );
+                                        bool isLoggedIn =
+                                            false; 
+
+                                        if (!isLoggedIn) {
+                                          // Show popup if not logged in
+                                          showDialog(
+                                            context: context,
+                                            builder: (_) => AlertDialog(
+                                              title: const Text(
+                                                "Login Required",
+                                                style: TextStyle(fontFamily: "TimesRomanFont"),
+                                              ),
+                                              content: const Text(
+                                                "You need to login first to contact the seller.",style: TextStyle(fontFamily: "TimesRomanFont"),
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(
+                                                      context,
+                                                    ); 
+                                                  },
+                                                  child: const Text("Cancel"),
+                                                ),
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(
+                                                      context,
+                                                    ); 
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const LoginScreen(), // replace with your login screen
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: const Text("OK"),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        } 
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xFF86520D),
+                                        backgroundColor: const Color(
+                                          0xFF86520D,
+                                        ),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12)),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                        ),
                                       ),
                                       child: const Text(
                                         "Buy",
                                         style: TextStyle(
-                                            fontFamily: "TimesRomanFont",color: Colors.white),
-                                            
+                                          fontFamily: "TimesRomanFont",
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -430,21 +472,43 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
 
       // ------------------- FAB -------------------
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ListProductScreen(onSubmit: (newItem) {
-                setState(() {
-                  items.add(newItem);
-                });
-              }),
+  onPressed: () {
+    bool isLoggedIn = false; // Replace with your actual login check
+
+    if (!isLoggedIn) {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: const Text("Login Required",style: TextStyle(fontFamily: "TimesRomanFont"),),
+          content: const Text("You need to login first to add a product.",style: TextStyle(fontFamily: "TimesRomanFont")),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); 
+              },
+              child: const Text("Cancel"),
             ),
-          );
-        },
-        backgroundColor: const Color(0xFF86520D),
-        child: const Icon(Icons.add,color: Colors.white),
-      ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LoginScreen(), 
+                  ),
+                );
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        ),
+      );
+    }
+  },
+  backgroundColor: const Color(0xFF86520D),
+  child: const Icon(Icons.add, color: Colors.white),
+),
+
 
       // ------------------- BOTTOM NAVIGATION -------------------
       bottomNavigationBar: bottomNavBar(),
@@ -454,8 +518,8 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
   // ------------------- BOTTOM NAV BAR -------------------
   Widget bottomNavBar() {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16, top: 10, left: 10, right: 10),
-      height: 55,
+      margin: const EdgeInsets.only(bottom: 26, top: 10, left: 12, right: 12),
+      height: 65,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -477,7 +541,7 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
               MaterialPageRoute(builder: (_) => const HomeScreen()),
             );
           }),
-          navItem(Icons.list, "MarketPlace", 1, () {
+          navItem(Icons.store, "MarketPlace", 1, () {
             setState(() => selectedIndex = 1);
           }),
           navItem(Icons.camera_alt, "Capture", 2, () {
@@ -517,13 +581,13 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
         children: [
           Icon(
             icon,
-            size: 22,
+            size: 26,
             color: selected ? const Color(0xFF86520D) : Colors.grey.shade600,
           ),
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: "TimesRomanFont",
               fontWeight: FontWeight.w600,
               color: selected ? const Color(0xFF86520D) : Colors.grey.shade600,
@@ -743,9 +807,13 @@ class _CartScreenState extends State<CartScreen> {
                               const SizedBox(height: 6),
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 2, horizontal: 6),
+                                  vertical: 2,
+                                  horizontal: 6,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF86520D).withOpacity(0.1),
+                                  color: const Color(
+                                    0xFF86520D,
+                                  ).withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Text(
@@ -817,7 +885,6 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
-
 
 // ------------------- ITEM DETAIL SCREEN -------------------
 class ItemDetailScreen extends StatelessWidget {
@@ -923,7 +990,9 @@ class ItemDetailScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 3),
+                crossAxisCount: 2,
+                childAspectRatio: 3,
+              ),
               children: [
                 buildAttribute("Carat", item["carat"]),
                 buildAttribute("Cut Style", item["cutStyle"]),
@@ -1091,42 +1160,44 @@ class _ListProductScreenState extends State<ListProductScreen> {
                       child: Row(
                         children: [
                           // Show selected images
-                          ...images.map((img) => Stack(
-                                children: [
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 8),
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      image: DecorationImage(
-                                        image: FileImage(img),
-                                        fit: BoxFit.cover,
+                          ...images.map(
+                            (img) => Stack(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(right: 8),
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    image: DecorationImage(
+                                      image: FileImage(img),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 4,
+                                  right: 4,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        images.remove(img);
+                                      });
+                                    },
+                                    child: const CircleAvatar(
+                                      radius: 12,
+                                      backgroundColor: Colors.red,
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Colors.white,
+                                        size: 16,
                                       ),
                                     ),
                                   ),
-                                  Positioned(
-                                    top: 4,
-                                    right: 4,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          images.remove(img);
-                                        });
-                                      },
-                                      child: const CircleAvatar(
-                                        radius: 12,
-                                        backgroundColor: Colors.red,
-                                        child: Icon(
-                                          Icons.close,
-                                          color: Colors.white,
-                                          size: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )),
+                                ),
+                              ],
+                            ),
+                          ),
                           // Add Image Button
                           GestureDetector(
                             onTap: showImagePickerDialog,
@@ -1161,7 +1232,10 @@ class _ListProductScreenState extends State<ListProductScreen> {
               buildTextField("Clarity", (val) => clarity = val!),
               buildTextField("Certificate", (val) => certificate = val!),
               buildTextField("Origin", (val) => origin = val!),
-              buildTextField("Price", (val) => price = double.tryParse(val!) ?? 0),
+              buildTextField(
+                "Price",
+                (val) => price = double.tryParse(val!) ?? 0,
+              ),
               buildTextField("Seller/Contact Name", (val) => seller = val!),
               buildTextField("Description", (val) => description = val!),
               const SizedBox(height: 20),
@@ -1198,7 +1272,8 @@ class _ListProductScreenState extends State<ListProductScreen> {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                   backgroundColor: const Color(0xFF86520D),
                   shadowColor: Colors.brown,
                   elevation: 6,

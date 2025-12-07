@@ -77,7 +77,6 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 "We collect different types of information to provide and improve our services:\n\n"
                 "• Personal information: your name, email, phone number, and home address. This helps us identify users and prevent fraudulent activities.\n"
                 "• Account credentials: your password and authentication information, which are securely stored.\n"
-                "• Transaction information: details of items you buy or sell, payment information, and order history.\n"
                 "• Usage data: information on how you interact with our app, such as pages visited, features used, and error reports.\n"
                 "• Device information: device type, operating system, IP address, and browser type to improve app performance and security.",
                 style: TextStyle(
@@ -101,7 +100,6 @@ class PrivacyPolicyScreen extends StatelessWidget {
               Text(
                 "Your information is used for the following purposes:\n\n"
                 "• To provide and maintain the app services, ensuring a smooth and safe experience.\n"
-                "• To process transactions, manage payments, and deliver purchased items accurately.\n"
                 "• To communicate important updates, promotions, or support-related messages.\n"
                 "• To detect and prevent fraudulent activity, misuse, or violations of our terms.\n"
                 "• To analyze trends, improve our platform, and develop new features based on user behavior.",
@@ -187,52 +185,10 @@ class PrivacyPolicyScreen extends StatelessWidget {
 
               SizedBox(height: 20),
 
-              Text(
-                "7. Cookies and Tracking",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "We use cookies and similar tracking technologies to enhance your experience. "
-                "This allows us to remember preferences, analyze user behavior, and optimize the app. "
-                "You can disable cookies in your device settings, but some features may not work properly.",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 15,
-                  height: 1.5,
-                ),
-              ),
 
-              SizedBox(height: 20),
-
+        
               Text(
-                "8. Third-Party Links",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                "Our app may contain links to third-party websites. "
-                "We are not responsible for the privacy practices or content of these external sites. "
-                "We encourage you to review the privacy policies of any site you visit through our app.",
-                style: TextStyle(
-                  fontFamily: 'TimesRomanFont',
-                  fontSize: 15,
-                  height: 1.5,
-                ),
-              ),
-
-              SizedBox(height: 20),
-
-              Text(
-                "9. Changes to This Policy",
+                "7. Changes to This Policy",
                 style: TextStyle(
                   fontFamily: 'TimesRomanFont',
                   fontSize: 20,
